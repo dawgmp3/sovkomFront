@@ -21,6 +21,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import PopupMenuCandidate from "./pages/Popup-Menu-Candidate";
+import PageCandidate from "./pages/Page-Candidate";
+import PageHR from "./pages/Page-HR";
+import React from "react";
 
 setupIonicReact();
 
@@ -29,7 +33,10 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/home">
-          <Home />
+          <PageCandidate/>
+        </Route>
+        <Route exact path="/hr-page">
+          <PageHR/>
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />
