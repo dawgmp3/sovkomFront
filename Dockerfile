@@ -5,4 +5,4 @@ RUN npm install -g @ionic/cli
 RUN npm install
 COPY ./ /app/
 EXPOSE 8100
-RUN ionic serve
+ENTRYPOINT ionic serve
