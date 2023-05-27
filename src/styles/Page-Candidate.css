@@ -63,7 +63,6 @@
     }
     .candidate-data
     {
-        /* TODO: относительные величины пожалуйста 🥺*/
         font-size: 5px; !important;
         padding: 10px;
         margin: 0;
@@ -72,8 +71,8 @@
 
 @media (max-width: 1300px)
 {
-    .vacancy-cards {
-        /* TODO: относительные величины пожалуйста 🥺*/
+    .vacancy-cards
+    {
         min-width: 300px;
         max-width: 500px;
         margin-right: 20px;

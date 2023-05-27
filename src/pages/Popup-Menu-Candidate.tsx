@@ -25,7 +25,7 @@ function PopupMenuCandidate() {
                 <IonContent className="ion-no-padding">
                     <IonList>
                         <IonMenuToggle>
-                            <IonItem routerLink="/">
+                            <IonItem routerLink="/home">
                                 <IonIcon src="./images/pulse-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Главная страничка</IonLabel>
                             </IonItem>
@@ -37,7 +37,7 @@ function PopupMenuCandidate() {
                             </IonItem>
                         </IonMenuToggle>
                         <IonMenuToggle>
-                            <IonItem routerLink="/">
+                            <IonItem routerLink="/candidate-tasks">
                                 <IonIcon src="./images/calendar-number-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Мои задания</IonLabel>
                             </IonItem>
@@ -54,17 +54,17 @@ function PopupMenuCandidate() {
                     </IonList>
                 </IonContent>
             </IonMenu>
-            <IonPage id="main-content">
-                <IonHeader>
-                    <IonToolbar>
-                        <IonButtons slot="start">
-                            <IonMenuButton></IonMenuButton>
-                        </IonButtons>
-                        <IonTitle>Menu</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-                {/*<IonContent className="ion-padding">тут отрисовка говна</IonContent>*/}
-            </IonPage>
+            {/*<IonPage id="main-content">*/}
+            {/*    <IonHeader>*/}
+            {/*        <IonToolbar>*/}
+            {/*            <IonButtons slot="start">*/}
+            {/*                <IonMenuButton></IonMenuButton>*/}
+            {/*            </IonButtons>*/}
+            {/*            <IonTitle>Menu</IonTitle>*/}
+            {/*        </IonToolbar>*/}
+            {/*    </IonHeader>*/}
+            {/*    /!*<IonContent className="ion-padding">тут отрисовка говна</IonContent>*!/*/}
+            {/*</IonPage>*/}
         </>
     );
 }

@@ -1,6 +1,6 @@
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import {Redirect, Route} from 'react-router-dom';
+import {IonApp, IonRouterOutlet, setupIonicReact} from '@ionic/react';
+import {IonReactRouter} from '@ionic/react-router';
 import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -25,25 +25,45 @@ import PopupMenuCandidate from "./pages/Popup-Menu-Candidate";
 import PageCandidate from "./pages/Page-Candidate";
 import PageHR from "./pages/Page-HR";
 import React from "react";
+import PageCandidateTasks from "./pages/Page-Candidate-Tasks";
+import CandidateTestForm from "./pages/Candidate-Test-Form";
+import CandidateCardForHR from "./pages/Candidate-Card-For-HR";
+import ListCandidates from "./pages/List-Of-Candidates";
+import VacancyPageForHR from "./pages/Vacancy-Page-For-HR";
 
 setupIonicReact();
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <PageCandidate/>
-        </Route>
-        <Route exact path="/hr-page">
-          <PageHR/>
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+    <IonApp>
+        <IonReactRouter>
+            <IonRouterOutlet>
+                <Route exact path="/vacancy-page-for-hr">
+                    <VacancyPageForHR/>
+                </Route>
+                <Route exact path="/candidate-card">
+                    <CandidateCardForHR/>
+                </Route>
+                <Route exact path="/list-candidates">
+                    <ListCandidates/>
+                </Route>
+                <Route exact path="/home">
+                    <PageCandidate/>
+                </Route>
+                <Route exact path="/hr-page">
+                    <PageHR/>
+                </Route>
+                <Route exact path="/candidate-tasks">
+                    <PageCandidateTasks/>
+                </Route>
+                <Route exact path="/">
+                    <Redirect to="/home"/>
+                </Route>
+                <Route exact path="/candidate-test">
+                    <CandidateTestForm/>
+                </Route>
+            </IonRouterOutlet>
+        </IonReactRouter>
+    </IonApp>
 );
 
 export default App;
