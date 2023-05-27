@@ -8,13 +8,23 @@ import {
     IonHeader,
     IonItem, IonLabel, IonList,
     IonMenuButton, IonMenuToggle,
-    IonPage, IonRow, IonThumbnail,
+    IonPage, IonRadio, IonRadioGroup, IonRow, IonThumbnail,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
 import PopupMenuCandidate from "./Popup-Menu-Candidate";
+import {render} from "@testing-library/react";
+
+
 
 function PageCandidate() {
+
+    const [checked, setChecked] = React.useState("");
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.value);
+    };
+    console.log(checked);
+
     return (
         <>
             <PopupMenuCandidate/>
@@ -127,7 +137,7 @@ function PageCandidate() {
                                             <IonItem lines="none" slot="start">Статус:</IonItem>
                                             <IonBadge slot="start" color="success">Одобрена</IonBadge>
                                         </IonItem>
-                                        <IonButton routerLink="/tasks" expand="block" fill="clear" color="transparent">Перейти к заданиям</IonButton>
+                                        <IonButton routerLink="/candidate-tasks" expand="block" fill="clear" color="transparent">Перейти к заданиям</IonButton>
                                     </IonList>
                                 </IonCard>
                             </IonCol>
@@ -228,6 +238,7 @@ function PageCandidate() {
                             </IonCol>
                         </IonRow>
                     </IonGrid>
+
                 </IonContent>
                 {/*<IonContent className="ion-padding">тут отрисовка говна</IonContent>*/}
             </IonPage>

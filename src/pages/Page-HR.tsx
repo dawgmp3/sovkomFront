@@ -78,8 +78,8 @@ function PageHR() {
                                     className="vacancy-cards-list">
                                 <div className="hr-card-vacansii-plus_button" style={{marginBottom: "20px"}}>
                                     <IonFab>
-                                        <IonFabButton className="pic-size">
-                                            <IonIcon icon="src/icons/add-outline.svg"></IonIcon>
+                                        <IonFabButton className="pic-size" style={{height: "34px", width: "34px"}}>
+                                            <IonIcon icon="../images/add-outline.svg"></IonIcon>
                                         </IonFabButton>
                                     </IonFab>
                                 </div>
@@ -87,7 +87,7 @@ function PageHR() {
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12"
                                     className="vacancy-cards-list">
                                 <div className="search-button">
-                                    <IonSearchbar searchIcon="src/icons/search-outline.svg"
+                                    <IonSearchbar searchIcon="../images/search-outline.svg"
                                                   placeholder="Search preorders and products"></IonSearchbar>
                                 </div>
                             </IonCol>
