@@ -13,9 +13,6 @@ import {
     IonToolbar
 } from '@ionic/react';
 import PopupMenuCandidate from "./Popup-Menu-Candidate";
-import {render} from "@testing-library/react";
-
-
 
 function PageCandidate() {
 
@@ -24,6 +21,7 @@ function PageCandidate() {
         setChecked(event.target.value);
     };
     console.log(checked);
+
 
     return (
         <>
@@ -240,7 +238,6 @@ function PageCandidate() {
                     </IonGrid>
 
                 </IonContent>
-                {/*<IonContent className="ion-padding">тут отрисовка говна</IonContent>*/}
             </IonPage>
         </>
     );

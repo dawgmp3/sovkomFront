@@ -1,8 +1,6 @@
 import {Redirect, Route} from 'react-router-dom';
 import {IonApp, IonRouterOutlet, setupIonicReact} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-import Home from './pages/Home';
-
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -21,24 +19,31 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import PopupMenuCandidate from "./pages/Popup-Menu-Candidate";
 import PageCandidate from "./pages/Page-Candidate";
 import PageHR from "./pages/Page-HR";
-import React from "react";
+import React, {useState} from "react";
 import PageCandidateTasks from "./pages/Page-Candidate-Tasks";
 import CandidateTestForm from "./pages/Candidate-Test-Form";
 import CandidateCardForHR from "./pages/Candidate-Card-For-HR";
 import ListCandidates from "./pages/List-Of-Candidates";
 import VacancyPageForHR from "./pages/Vacancy-Page-For-HR";
+import MainPageByRole from "./scripts/MainPageLoader";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
 
 setupIonicReact();
-
 const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
                 <Route exact path="/vacancy-page-for-hr">
                     <VacancyPageForHR/>
+                </Route>
+                <Route exact path="/register">
+                    <Registration/>
+                </Route>
+                <Route exact path="/login">
+                    <Login/>
                 </Route>
                 <Route exact path="/candidate-card">
                     <CandidateCardForHR/>
@@ -47,7 +52,7 @@ const App: React.FC = () => (
                     <ListCandidates/>
                 </Route>
                 <Route exact path="/home">
-                    <PageCandidate/>
+                    <MainPageByRole role="ROLE_USER"/>
                 </Route>
                 <Route exact path="/hr-page">
                     <PageHR/>
