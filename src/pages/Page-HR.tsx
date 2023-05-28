@@ -43,6 +43,7 @@ const PageHR = () => {
             })
             .then(dataCandidate => {
                 setImage(dataCandidate.image)
+                setName(dataCandidate.name)
             })
     }
 
