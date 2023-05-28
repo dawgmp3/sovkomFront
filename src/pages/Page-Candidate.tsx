@@ -40,7 +40,7 @@ function PageCandidate() {
     }
 
     const fetchDataOtkliki = () => {
-        fetch('')
+        fetch('/api/userInfo/getUsersResponses')
             .then(response => {
                 return response.json()
             })
@@ -51,7 +51,7 @@ function PageCandidate() {
     }
 
     const fetchUserData = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUserInformation")
+        fetch("/api/userInfo/getUserInformation")
             .then(response => {
                 return response.json()
             })
@@ -160,10 +160,11 @@ function PageCandidate() {
                                             className="vacancy-cards-list" key={vac.id}>
                                         <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                             <IonCardHeader>
-                                                <IonCardTitle style={{fontWeight: 600}}>{vac.name}</IonCardTitle>
+                                                <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
                                             </IonCardHeader>
                                             <IonItem>
-                                                <IonLabel class="ion-text-wrap">{vac.description}</IonLabel>
+                                                <IonBadge slot="start" color={"success"}>{vac.vacancyStatus}</IonBadge>
+                                                <IonBadge slot="end" color={"warning"}>{vac.workExperience}</IonBadge>
                                             </IonItem>
                                         </IonCard>
                                     </IonCol>
