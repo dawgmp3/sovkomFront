@@ -42,7 +42,7 @@ const PageHR = () => {
                 return response.json()
             })
             .then(dataCandidate => {
-                setImage(dataCandidate.image)
+                setImage(dataCandidate.image_url)
                 setName(dataCandidate.name)
             })
     }
