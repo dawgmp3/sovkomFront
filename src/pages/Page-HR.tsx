@@ -159,8 +159,8 @@ const PageHR = () => {
                                                 кандидатов</IonButton>
                                         </IonCardContent>
                                     </IonCard>
-                                </IonCol>)
-                            )}
+                                </IonCol>
+                                ))}
                         </IonRow>
                     </IonGrid>
 

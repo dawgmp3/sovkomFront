@@ -20,6 +20,7 @@ function PageCandidate() {
     const [vacancy, setVacancy] = useState<any[]>([])
     const [user, setUser] = useState<any[]>([])
     const [candidate, setCandidate] = useState<any[]>([])
+    const [otkliki, setOtkliki] = useState<any[]>([])
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -34,6 +35,17 @@ function PageCandidate() {
             })
             .then(data => {
                 setVacancy(data)
+                console.log(vacancy)
+            })
+    }
+
+    const fetchDataOtkliki = () => {
+        fetch('')
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setOtkliki(data)
                 console.log(vacancy)
             })
     }
@@ -109,69 +121,29 @@ function PageCandidate() {
 
                     <IonGrid style={{margin: "10px"}}>
                         <IonRow style={{marginLeft: "0px"}}>
+                        {otkliki.map(otkl =>(
                             <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
                                     className="vacancy-cards-list">
                                 <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                     <IonCardHeader>
-                                        <IonCardTitle style={{fontWeight: 600}}>Backend разработчик Java</IonCardTitle>
+                                        <IonCardTitle style={{fontWeight: 600}}>{otkl.vacancy.name}</IonCardTitle>
                                     </IonCardHeader>
                                     <IonList no-lines>
                                         <IonItem lines="none">
                                             <IonItem>
                                                 <IonLabel>Дата подачи:</IonLabel>
-                                                <IonItem lines="none" slot="end">11.11.11</IonItem>
+                                                <IonItem lines="none" slot="end">{otkl.creationDate}</IonItem>
                                             </IonItem>
                                         </IonItem>
                                         <IonItem lines="none">
                                             <IonItem lines="none" slot="start">Статус:</IonItem>
-                                            <IonBadge slot="start"  color="primary">На рассмотрении</IonBadge>
+                                            <IonBadge slot="start"  color="primary">{otkl.responseStatus}</IonBadge>
                                         </IonItem>
                                     </IonList>
                                     <IonItem></IonItem>
                                 </IonCard>
                             </IonCol>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle style={{fontWeight: 600}}>Backend разработчик C#</IonCardTitle>
-                                    </IonCardHeader>
-                                    <IonList no-lines>
-                                        <IonItem lines="none">
-                                            <IonItem>
-                                                <IonLabel>Дата подачи:</IonLabel>
-                                                <IonItem lines="none" slot="end">11.11.11</IonItem>
-                                            </IonItem>
-                                        </IonItem>
-                                        <IonItem lines="none">
-                                            <IonItem lines="none" slot="start">Статус:</IonItem>
-                                            <IonBadge slot="start" color="danger">Отказ</IonBadge>
-                                        </IonItem>
-                                    </IonList>
-                                    <IonItem></IonItem>
-                                </IonCard>
-                            </IonCol>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle style={{fontWeight: 600}}>Backend разработчик Жопой</IonCardTitle>
-                                    </IonCardHeader>
-                                    <IonList>
-                                        <IonItem lines="none">
-                                            <IonItem>
-                                                <IonLabel>Дата подачи:</IonLabel>
-                                                <IonItem lines="none" slot="end">11.11.11</IonItem>
-                                            </IonItem>
-                                        </IonItem>
-                                        <IonItem lines="none">
-                                            <IonItem lines="none" slot="start">Статус:</IonItem>
-                                            <IonBadge slot="start" color="success">Одобрена</IonBadge>
-                                        </IonItem>
-                                        <IonButton routerLink="/candidate-tasks" expand="block" fill="clear" color="transparent">Перейти к заданиям</IonButton>
-                                    </IonList>
-                                </IonCard>
-                            </IonCol>
+                            ))}
                         </IonRow>
                     </IonGrid>
 
