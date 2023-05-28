@@ -50,25 +50,26 @@ function Login() {
 
 
     async function jsonLog() {
-        let jsonRegisterData = {
-            email: email,
+        let jsonLoginData = {
+            username: email,
             password: password,
         }
-        let loginBackData = JSON.stringify(jsonRegisterData);
-        // useEffect(()=>{
-        //     fetch("http://localhost:8080/register/user/{loginBackData}")
-        //     }
-        // )
-        fetch("http://localhost:8080/api/user/registrationUser/dto=", {
+        console.log(jsonLoginData)
+        let loginBackData = JSON.stringify(jsonLoginData);
+        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/login", {
+            mode: "no-cors",
             method: 'POST',
             headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                'Origin': '*',
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
             },
-            body: loginBackData })
-            .then(function(response){
+            body: loginBackData
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(text){
+            .then(function (text) {
                 console.log(text);
             })
     }
@@ -103,6 +104,7 @@ function Login() {
                                               errorText="Неферный формат e-mail"
                                               onIonInput={(event) => validate(event)}
                                               onIonBlur={() => markTouched()}
+                                              onInput={(e: any) => handleChangeEmail(e)}
                                     ></IonInput>
                                 </IonItem>
                             </IonCard>
@@ -115,21 +117,20 @@ function Login() {
                                               labelPlacement="floating"
                                               helperText="Введите пароль"
                                               errorText="Password"
-                                              onIonInput={(event) => validate(event)}
                                               onIonBlur={() => markTouched()}
                                               counter={true}
                                               maxlength={20}
                                               minlength={6}
+                                              onInput={(e: any) => handleChangePassword(e)}
                                     ></IonInput>
                                 </IonItem>
                             </IonCard>
                             <IonButton expand="block" fill="clear" color="tertiary"
-                                       onClick={() => jsonLog()}>Войти</IonButton>
+                                       onClick={() => jsonLog()} href={'/login'}>Войти</IonButton>
                             <IonItem lines="none" color="transparent">
                                 <IonLabel slot="start">Нет аккаунта?</IonLabel>
                                 <IonButton slot="end"
-                                           color="tertiary"
-                                           routerLink="/register">Зарегистрироваться</IonButton>
+                                           color="tertiary">Зарегистрироваться</IonButton>
                             </IonItem>
                         </IonCol>
                     </IonRow>
