@@ -30,9 +30,14 @@ import VacancyPageForHR from "./pages/Vacancy-Page-For-HR";
 import MainPageByRole from "./scripts/MainPageLoader";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
+import AllVacancyCards from "./pages/Page-HR";
 
 setupIonicReact();
 const App: React.FC = () => (
+
+
+
+
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
@@ -52,7 +57,7 @@ const App: React.FC = () => (
                     <ListCandidates/>
                 </Route>
                 <Route exact path="/home">
-                    <MainPageByRole role="ROLE_USER"/>
+                    <MainPageByRole/>
                 </Route>
                 <Route exact path="/hr-page">
                     <PageHR/>

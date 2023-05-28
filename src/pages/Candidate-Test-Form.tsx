@@ -12,6 +12,7 @@ import {
 import React from "react";
 import PopupMenuCandidate from "./Popup-Menu-Candidate";
 import "../styles/Test-Form.css"
+import PopupMenu from "./Popup-Menu";
 
 function CandidateTestForm() {
 
@@ -24,7 +25,7 @@ function CandidateTestForm() {
 
     return (
         <>
-            <PopupMenuCandidate/>
+            <PopupMenu/>
             <IonPage id="main-content">
                 {/*Header and Timer*/}
                 <IonHeader>

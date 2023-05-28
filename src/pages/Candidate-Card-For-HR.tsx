@@ -1,19 +1,75 @@
-import React from 'react';
+
+import React, {useEffect, useState} from 'react';
 import '../styles/Page-HR.css'
 import {
     IonBadge, IonButton,
     IonButtons,
     IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol,
-    IonContent, IonFab, IonFabButton, IonGrid,
+    IonContent, IonGrid,
     IonHeader, IonIcon, IonItem, IonLabel, IonList,
     IonMenu,
     IonMenuButton,
-    IonPage, IonRow, IonSearchbar, IonSelect, IonSelectOption, IonText, IonThumbnail,
+    IonPage, IonRow, IonSelect, IonSelectOption, IonText, IonThumbnail,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
 import PopupMenu from "./Popup-Menu";
-function CandidateCardForHR() {
+
+interface Stage {
+    name: string;
+    id: string;
+    deadline: Date;
+    result: string;
+    additional: null;
+    state: string;
+}
+
+interface Vacancy {
+    responseStatus: string;
+    creationDate: string;
+    vacancyName: string;
+    stages: Stage[];
+    vacancyId: string;
+}
+
+const CandidateCardForHR = () => {
+    const [candidate, setCandidate] = useState<any[]>([])
+    const [otkilk, setOtklik] = useState<any[]>([])
+
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
+
+    const fetchDataOtkliki = () => {
+        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUsersResponses?userId=dcd6baa9-cbc2-428b-afe4-556a4f7538d0")
+            .then(response => {
+                return response.json()
+            })
+            .then(dataOtklik => {
+                setOtklik(dataOtklik)
+            })
+    }
+
+    const fetchData = () => {
+        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUsersInfo?userId=dcd6baa9-cbc2-428b-afe4-556a4f7538d0")
+            .then(response => {
+                return response.json()
+            })
+            .then(dataCandidate => {
+                setCandidate(dataCandidate)
+                setPhoneNumber(dataCandidate.phoneNumber)
+                setEmail(dataCandidate.email)
+                setName(dataCandidate.name)
+                setImage(dataCandidate.image_url)
+            })
+    }
+
+    useEffect(() => {
+        fetchData()
+        fetchDataOtkliki()
+    }, [])
+
     return (
         <>
             <PopupMenu/>
@@ -35,40 +91,32 @@ function CandidateCardForHR() {
                             <IonCol>
                                 <IonThumbnail className="candidate-image-thumbnail">
                                     <img className="candidate-image" alt="Silhouette of mountains"
-                                         src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+                                         src={image}/>
                                 </IonThumbnail>
                             </IonCol>
-                            <IonCol className="candidate-card">
-                                <IonCard className="ion-no-margin" style={{borderRadius: '20px', width: "40vh"}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle>Name of candidate</IonCardTitle>
-                                        <IonCardSubtitle>Информация:</IonCardSubtitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonList>
-                                            <IonItem>
-                                                <IonLabel>Телефон</IonLabel>
-                                                <IonLabel slot="end">external ID</IonLabel>
-                                            </IonItem>
 
-                                            <IonItem>
-                                                <IonLabel>Почта</IonLabel>
-                                                <IonLabel slot="end">internal ID</IonLabel>
-                                            </IonItem>
+                                <IonCol className="candidate-card">
+                                    <IonCard className="ion-no-margin" style={{borderRadius: '20px', width: "40vh"}}>
+                                        <IonCardHeader>
+                                            <IonCardTitle>{name}</IonCardTitle>
+                                            <IonCardSubtitle>Информация:</IonCardSubtitle>
+                                        </IonCardHeader>
+                                        <IonCardContent>
+                                            <IonList>
+                                                <IonItem>
+                                                    <IonLabel>Телефон</IonLabel>
+                                                    <IonLabel slot="end">{phoneNumber}</IonLabel>
+                                                </IonItem>
 
-                                            <IonItem>
-                                                <IonLabel>Телефон</IonLabel>
-                                                <IonLabel slot="end">external ID</IonLabel>
-                                            </IonItem>
+                                                <IonItem>
+                                                    <IonLabel>Почта</IonLabel>
+                                                    <IonLabel slot="end">{email}</IonLabel>
+                                                </IonItem>
+                                            </IonList>
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>
 
-                                            <IonItem>
-                                                <IonLabel>In stock</IonLabel>
-                                                <IonLabel slot="end">QOH</IonLabel>
-                                            </IonItem>
-                                        </IonList>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
                         </IonRow>
                     </IonGrid>
 
@@ -77,236 +125,77 @@ function CandidateCardForHR() {
                     </IonCol>
                     <IonGrid>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle>Backend разработчик на Java</IonCardTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel>Статус</IonLabel>
-                                            <IonBadge color="warning">В процессе отбора</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonLabel>Последний пройденный этап</IonLabel>
-                                            <IonLabel color="medium" slot="end">Тестирование</IonLabel>
 
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Анкета</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Тест</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Результаты этапов</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
+                            {otkilk.map(otk => (
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4" key={otk.id}>
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                        <IonCardHeader>
+                                            <IonCardTitle>{otk.vacancyName}</IonCardTitle>
+                                        </IonCardHeader>
+                                        <IonCardContent>
+                                            {(otk.stages).map((stage: Stage) => (
                                                 <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Назначить этап">
-                                                        <IonSelectOption value="apples">Интервью</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Тестирование</IonSelectOption>
-                                                    </IonSelect>
+                                                    <IonLabel>Статус отклика</IonLabel>
+                                                    <IonBadge color="warning">{stage.name}</IonBadge>
                                                 </IonItem>
-                                            </IonList>
-                                        </IonButton>
+                                                )
+                                            )}
+                                            {/*<IonItem>*/}
+                                            {/*    <IonLabel>Статус отклика</IonLabel>*/}
+                                            {/*    <IonBadge color="warning">{otk.state}</IonBadge>*/}
+                                            {/*</IonItem>*/}
+                                            <IonItem>
+                                                <IonLabel>Последний пройденный этап</IonLabel>
+                                                <IonLabel color="medium" slot="end">to-be-realised</IonLabel>
+                                            </IonItem>
 
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
-                                                <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Выдать результат">
-                                                        <IonSelectOption value="apples">Назначить предложение</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Отказ</IonSelectOption>
-                                                    </IonSelect>
-                                                </IonItem>
-                                            </IonList>
-                                        </IonButton>
+                                            {/*<IonItem routerLink="/">*/}
+                                            {/*    <IonLabel>Анкета</IonLabel>*/}
+                                            {/*    <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>*/}
+                                            {/*</IonItem>*/}
 
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
+                                            <IonItem routerLink="/">
+                                                <IonLabel>Тест</IonLabel>
+                                                <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
+                                            </IonItem>
+                                            <IonItem routerLink="/home">
+                                                <IonLabel>Результаты этапов</IonLabel>
+                                                <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
+                                            </IonItem>
 
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle>Backend разработчик на Java</IonCardTitle>
 
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel>Статус</IonLabel>
-                                            <IonBadge color="warning">В процессе отбора</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonLabel>Последний пройденный этап</IonLabel>
-                                            <IonLabel color="medium" slot="end">Тестирование</IonLabel>
 
-                                        </IonItem>
+                                                {/*<IonLabel>Результаты этапов</IonLabel>*/}
+                                                {/*<IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>*/}
 
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Анкета</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
 
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Тест</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
+                                            <IonButton expand="block" fill="clear" color="transparent">
+                                                <IonList>
+                                                    <IonItem>
+                                                        <IonSelect interface="popover" placeholder="Назначить этап">
+                                                            <IonSelectOption value="apples">Интервью</IonSelectOption>
+                                                            <IonSelectOption value="oranges">Тестирование</IonSelectOption>
+                                                        </IonSelect>
+                                                    </IonItem>
+                                                </IonList>
+                                            </IonButton>
 
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Результаты этапов</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
+                                            <IonButton expand="block" fill="clear" color="transparent">
+                                                <IonList>
+                                                    <IonItem>
+                                                        <IonSelect interface="popover" placeholder="Выдать результат">
+                                                            <IonSelectOption value="apples">Назначить предложение</IonSelectOption>
+                                                            <IonSelectOption value="oranges">Отказ</IonSelectOption>
+                                                        </IonSelect>
+                                                    </IonItem>
+                                                </IonList>
+                                            </IonButton>
 
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
-                                                <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Назначить этап">
-                                                        <IonSelectOption value="apples">Интервью</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Тестирование</IonSelectOption>
-                                                    </IonSelect>
-                                                </IonItem>
-                                            </IonList>
-                                        </IonButton>
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>
+                                ))}
 
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
-                                                <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Выдать результат">
-                                                        <IonSelectOption value="apples">Назначить предложение</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Отказ</IonSelectOption>
-                                                    </IonSelect>
-                                                </IonItem>
-                                            </IonList>
-                                        </IonButton>
-
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle>Backend разработчик на Java</IonCardTitle>
-
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel>Статус</IonLabel>
-                                            <IonBadge color="warning">В процессе отбора</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonLabel>Последний пройденный этап</IonLabel>
-                                            <IonLabel color="medium" slot="end">Тестирование</IonLabel>
-
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Анкета</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Тест</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Результаты этапов</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
-                                                <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Назначить этап">
-                                                        <IonSelectOption value="apples">Интервью</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Тестирование</IonSelectOption>
-                                                    </IonSelect>
-                                                </IonItem>
-                                            </IonList>
-                                        </IonButton>
-
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
-                                                <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Выдать результат">
-                                                        <IonSelectOption value="apples">Назначить предложение</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Отказ</IonSelectOption>
-                                                    </IonSelect>
-                                                </IonItem>
-                                            </IonList>
-                                        </IonButton>
-
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardHeader>
-                                        <IonCardTitle>Backend разработчик на Java</IonCardTitle>
-
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel>Статус</IonLabel>
-                                            <IonBadge color="warning">В процессе отбора</IonBadge>
-                                        </IonItem>
-                                        <IonItem>
-                                            <IonLabel>Последний пройденный этап</IonLabel>
-                                            <IonLabel color="medium" slot="end">Тестирование</IonLabel>
-
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Анкета</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Тест</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonItem routerLink="/">
-                                            <IonLabel>Результаты этапов</IonLabel>
-                                            <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
-                                        </IonItem>
-
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
-                                                <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Назначить этап">
-                                                        <IonSelectOption value="apples">Интервью</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Тестирование</IonSelectOption>
-                                                    </IonSelect>
-                                                </IonItem>
-                                            </IonList>
-                                        </IonButton>
-
-                                        <IonButton expand="block" fill="clear" color="transparent">
-                                            <IonList>
-                                                <IonItem>
-                                                    <IonSelect interface="popover" placeholder="Выдать результат">
-                                                        <IonSelectOption value="apples">Назначить предложение</IonSelectOption>
-                                                        <IonSelectOption value="oranges">Отказ</IonSelectOption>
-                                                    </IonSelect>
-                                                </IonItem>
-                                            </IonList>
-                                        </IonButton>
-
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
                         </IonRow>
                     </IonGrid>
                 </IonContent>
