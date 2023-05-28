@@ -147,10 +147,11 @@ const PageHR = () => {
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                         <IonCardContent>
                                             <IonItem>
-                                                <IonLabel style={{fontWeight: 700}}>{vac.name}</IonLabel>
+                                                <IonLabel style={{fontWeight: 700}}>{vac.vacancyName}</IonLabel>
                                             </IonItem>
                                             <IonItem>
-                                                <IonLabel class="ion-text-wrap">{vac.description}</IonLabel>
+                                                <IonBadge slot="start" color={"success"}>{vac.vacancyStatus}</IonBadge>
+                                                <IonBadge slot="end" color={"warning"}>{vac.workExperience}</IonBadge>
                                             </IonItem>
                                             <IonButton
                                                 onClick={() => navigateToPage(vac.id)}
