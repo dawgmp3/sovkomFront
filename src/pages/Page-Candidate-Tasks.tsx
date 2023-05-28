@@ -43,7 +43,7 @@ const PageCandidateTasks = () => {
 
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
-        fetch("/api/userInfo/getUserInformation")
+        fetch("/api/userInfo/getUserResponses")
             .then(response => {
                 return response.json()
             })
@@ -65,13 +65,6 @@ const PageCandidateTasks = () => {
                     <IonToolbar>
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
-                        </IonButtons>
-                        <IonButtons slot="end">
-                            <IonMenuToggle>
-                                <IonItem lines="none" routerLink="/logout">
-                                    <IonTitle>Выйти</IonTitle>
-                                </IonItem>
-                            </IonMenuToggle>
                         </IonButtons>
                         <IonTitle>Мои Задания</IonTitle>
                     </IonToolbar>
