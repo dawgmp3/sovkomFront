@@ -18,7 +18,7 @@ import {
     IonItem,
     IonLabel,
     IonList,
-    IonMenuButton,
+    IonMenuButton, IonMenuToggle,
     IonPage,
     IonRadio,
     IonRadioGroup,
@@ -43,6 +43,13 @@ function VacancyPageForHR() {
                     <IonToolbar>
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
+                        </IonButtons>
+                        <IonButtons slot="end">
+                            <IonMenuToggle>
+                                <IonItem lines="none" routerLink="/logout">
+                                    <IonTitle>Выйти</IonTitle>
+                                </IonItem>
+                            </IonMenuToggle>
                         </IonButtons>
                         <IonTitle>Вакансия</IonTitle>
                     </IonToolbar>

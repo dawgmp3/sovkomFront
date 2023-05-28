@@ -1,5 +1,4 @@
-import React from 'react';
-import './Home.css';
+import React, {useEffect, useState} from 'react';
 import '../styles/Page-HR.css'
 import {
     IonBadge, IonButton,
@@ -7,14 +6,31 @@ import {
     IonCard, IonCardContent, IonCol,
     IonContent, IonFab, IonFabButton, IonGrid,
     IonHeader, IonIcon, IonItem, IonLabel,
-    IonMenuButton,
+    IonMenuButton, IonMenuToggle,
     IonPage, IonRow, IonSearchbar, IonThumbnail,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
 import PopupMenu from "./Popup-Menu-Candidate";
 
-function PageHR() {
+const PageHR = () => {
+    const [vacancy, setVacancy] = useState<any[]>([])
+
+    const fetchData = () => {
+        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/vacancy/allVacancies")
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setVacancy(data)
+            })
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+// function PageHR() {
     return (
         <>
             <PopupMenu/>
@@ -24,6 +40,13 @@ function PageHR() {
                     <IonToolbar>
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
+                        </IonButtons>
+                        <IonButtons slot="end">
+                            <IonMenuToggle>
+                                <IonItem lines="none" routerLink="/logout">
+                                    <IonTitle>Выйти</IonTitle>
+                                </IonItem>
+                            </IonMenuToggle>
                         </IonButtons>
                         <IonTitle>Главная страница</IonTitle>
                     </IonToolbar>
@@ -78,7 +101,7 @@ function PageHR() {
                                     className="vacancy-cards-list">
                                 <div className="hr-card-vacansii-plus_button" style={{marginBottom: "20px"}}>
                                     <IonFab>
-                                        <IonFabButton className="pic-size" style={{height: "34px", width: "34px"}}>
+                                        <IonFabButton routerLink="/vacancy-page-for-hr" className="pic-size" style={{height: "34px", width: "34px"}}>
                                             <IonIcon icon="../images/add-outline.svg"></IonIcon>
                                         </IonFabButton>
                                     </IonFab>
@@ -96,110 +119,23 @@ function PageHR() {
 
                     <IonGrid style={{margin: "0px"}}>
                         <IonRow>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel style={{fontWeight: 700}}>Backend-разработчик на C#</IonLabel>
-                                        </IonItem>
-
-                                        <IonItem>
-                                            <IonLabel>Краткое описание</IonLabel>
-                                        </IonItem>
-                                        <IonButton expand="block" fill="clear" color="transparent">Просмотреть
-                                            кандидатов</IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel style={{fontWeight: 700}}>Backend-разработчик на C#</IonLabel>
-                                        </IonItem>
-
-                                        <IonItem>
-                                            <IonLabel>Краткое описание</IonLabel>
-                                        </IonItem>
-                                        <IonButton expand="block" fill="clear" color="transparent">Просмотреть
-                                            кандидатов</IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel style={{fontWeight: 700}}>Backend-разработчик на C#</IonLabel>
-                                        </IonItem>
-
-                                        <IonItem>
-                                            <IonLabel>Краткое описание</IonLabel>
-                                        </IonItem>
-                                        <IonButton expand="block" fill="clear" color="transparent">Просмотреть
-                                            кандидатов</IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonCol>
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel style={{fontWeight: 700}}>Backend-разработчик на C#</IonLabel>
-                                        </IonItem>
-
-                                        <IonItem>
-                                            <IonLabel>Краткое описание</IonLabel>
-                                        </IonItem>
-                                        <IonButton expand="block" fill="clear" color="transparent">Просмотреть
-                                            кандидатов</IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-
-                            </IonCol>
-
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel style={{fontWeight: 700}}>Backend-разработчик на C#</IonLabel>
-                                        </IonItem>
-
-                                        <IonItem>
-                                            <IonLabel>Краткое описание</IonLabel>
-                                        </IonItem>
-                                        <IonButton expand="block" fill="clear" color="transparent">Просмотреть
-                                            кандидатов</IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-
-                            </IonCol>
-
-                            <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                    className="vacancy-cards-list">
-
-                                <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
-                                    <IonCardContent>
-                                        <IonItem>
-                                            <IonLabel style={{fontWeight: 700}}>Backend-разработчик на C#</IonLabel>
-                                        </IonItem>
-
-                                        <IonItem>
-                                            <IonLabel>Краткое описание</IonLabel>
-                                        </IonItem>
-                                        <IonButton expand="block" fill="clear" color="transparent">Просмотреть
-                                            кандидатов</IonButton>
-                                    </IonCardContent>
-                                </IonCard>
-
-                            </IonCol>
+                            {vacancy.map(vac => (
+                                <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
+                                        className="vacancy-cards-list" key={vac.id}>
+                                    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
+                                        <IonCardContent>
+                                            <IonItem>
+                                                <IonLabel style={{fontWeight: 700}}>{vac.name}</IonLabel>
+                                            </IonItem>
+                                            <IonItem>
+                                                <IonLabel class="ion-text-wrap">{vac.description}</IonLabel>
+                                            </IonItem>
+                                            <IonButton routerLink="/list-candidates" expand="block" fill="clear" color="transparent">Просмотреть
+                                                кандидатов</IonButton>
+                                        </IonCardContent>
+                                    </IonCard>
+                                </IonCol>)
+                            )}
                         </IonRow>
                     </IonGrid>
 

@@ -30,6 +30,7 @@ import VacancyPageForHR from "./pages/Vacancy-Page-For-HR";
 import MainPageByRole from "./scripts/MainPageLoader";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
+import AllVacancyCards from "./pages/Page-HR";
 
 setupIonicReact();
 const App: React.FC = () => (
