@@ -15,6 +15,8 @@ import PopupMenu from "./Popup-Menu-Candidate";
 
 const PageHR = () => {
     const [vacancy, setVacancy] = useState<any[]>([])
+    const [image, setImage] = useState('')
+    const [name, setName] = useState('')
 
     const fetchData = () => {
         fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/vacancy/allVacancies")
@@ -26,8 +28,19 @@ const PageHR = () => {
             })
     }
 
+    const fetchUserData = () => {
+        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUserInformation")
+            .then(response => {
+                return response.json()
+            })
+            .then(dataCandidate => {
+                setImage(dataCandidate.image)
+            })
+    }
+
     useEffect(() => {
         fetchData()
+        fetchUserData()
     }, [])
 
 // function PageHR() {
@@ -65,7 +78,7 @@ const PageHR = () => {
                                         <IonItem>
                                             <IonThumbnail slot="start">
                                                 <img alt="Silhouette of mountains"
-                                                     src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                                                     src={image}
                                                      style={{borderRadius: '16px'}}/>
                                             </IonThumbnail>
                                             <IonLabel>Орлова Софья</IonLabel>
@@ -101,7 +114,8 @@ const PageHR = () => {
                                     className="vacancy-cards-list">
                                 <div className="hr-card-vacansii-plus_button" style={{marginBottom: "20px"}}>
                                     <IonFab>
-                                        <IonFabButton routerLink="/vacancy-page-for-hr" className="pic-size" style={{height: "34px", width: "34px"}}>
+                                        <IonFabButton routerLink="/vacancy-page-for-hr" className="pic-size"
+                                                      style={{height: "34px", width: "34px"}}>
                                             <IonIcon icon="../images/add-outline.svg"></IonIcon>
                                         </IonFabButton>
                                     </IonFab>
@@ -130,7 +144,9 @@ const PageHR = () => {
                                             <IonItem>
                                                 <IonLabel class="ion-text-wrap">{vac.description}</IonLabel>
                                             </IonItem>
-                                            <IonButton routerLink="/list-candidates" expand="block" fill="clear" color="transparent">Просмотреть
+                                            <IonButton
+                                                onClick={() => navigateToPage(vac.id)}
+                                                expand="block" fill="clear" color="transparent">Просмотреть
                                                 кандидатов</IonButton>
                                         </IonCardContent>
                                     </IonCard>

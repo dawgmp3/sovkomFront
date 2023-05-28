@@ -14,6 +14,7 @@ import React, {useState} from "react";
 import {Redirect, Route} from "react-router-dom";
 import PopupMenuCandidate from "./Popup-Menu-Candidate";
 import "../styles/Test-Form.css"
+import {openExternalSite, redirectToExternalSite} from "../scripts/utils";
 
 function Registration() {
     const [email, setEmail] = React.useState("");
@@ -68,7 +69,7 @@ function Registration() {
                 phoneNumber: phone,
             }
             console.log(JSON.stringify(jsonRegisterData));
-            await fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/user/registrationUser", {
+            await fetch("/api/user/registrationUser", {
                 // mode: 'no-cors',
                 method: 'POST',
                 headers: {
@@ -173,7 +174,8 @@ function Registration() {
                                            color="tertiary">Зарегистрироваться</IonButton>
                                 <IonItem lines="none" color="transparent">
                                     <IonLabel slot="start">Уже есть аккаунт?</IonLabel>
-                                    <IonButton slot="end" color="tertiary" routerLink="/login">Войти</IonButton>
+                                    <IonButton slot="end" color="tertiary"
+                                               onClick={() => redirectToExternalSite('/login')}>Войти</IonButton>
                                 </IonItem>
                             </IonCol>
                         </IonRow>

@@ -14,6 +14,7 @@ import {
 } from "@ionic/react";
 import React, {useEffect, useState} from 'react';
 import PopupMenu from "./Popup-Menu";
+import {useHistory, useParams} from "react-router";
 
 interface Stage {
     name: string;
@@ -36,7 +37,7 @@ const ListCandidates = () => {
     const [candidate, setCandidate] = useState<any[]>([])
 
     const fetchData = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/vacancy/getCandidatesByVacancy?vacancyId=b396f1b4-b2ed-46a6-a355-91776b207272")
+        fetch("/api/vacancy/getCandidatesByVacancy?vacancyId=" + id)
             .then(response => {
                 return response.json()
             })

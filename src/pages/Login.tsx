@@ -56,8 +56,8 @@ function Login() {
         }
         console.log(jsonLoginData)
         let loginBackData = JSON.stringify(jsonLoginData);
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/login", {
-            mode: "no-cors",
+        fetch("/login", {
+            // mode: "no-cors",
             method: 'POST',
             headers: {
                 'Origin': '*',

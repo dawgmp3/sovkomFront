@@ -1,6 +1,6 @@
 import PageHR from "../pages/Page-HR";
 import PageCandidate from "../pages/Page-Candidate";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 
@@ -17,6 +17,10 @@ function MainPageByRole() {
             })
     }
 
+    useEffect(  () => {
+        fetchData();
+    })
+
     if (role == "HR") {
         return <PageHR/>;
     }
@@ -26,6 +30,9 @@ function MainPageByRole() {
     else {
         return <Registration/>
     }
+
+
+
 }
 
 
