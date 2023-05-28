@@ -31,12 +31,6 @@ function PopupMenuCandidate() {
                             </IonItem>
                         </IonMenuToggle>
                         <IonMenuToggle>
-                            <IonItem routerLink="/">
-                                <IonIcon src="./images/ice-cream-outline.svg" slot="start"></IonIcon>
-                                <IonLabel>Все вакансии</IonLabel>
-                            </IonItem>
-                        </IonMenuToggle>
-                        <IonMenuToggle>
                             <IonItem routerLink="/candidate-tasks">
                                 <IonIcon src="./images/calendar-number-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Мои задания</IonLabel>
@@ -48,7 +42,7 @@ function PopupMenuCandidate() {
                         <IonMenuToggle>
                             <IonItem routerLink="/">
                                 <IonIcon src="./images/terminal-outline.svg" slot="start"></IonIcon>
-                                <IonLabel>Статистика</IonLabel>
+                                <IonLabel>Поддержка</IonLabel>
                             </IonItem>
                         </IonMenuToggle>
                     </IonList>

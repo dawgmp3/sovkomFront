@@ -39,9 +39,11 @@ interface Props {
 }
 
 const PageCandidateTasks = () => {
+
+
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUsersResponses?userId=dcd6baa9-cbc2-428b-afe4-556a4f7538d0")
+        fetch("/api/userInfo/getUserInformation")
             .then(response => {
                 return response.json()
             })
@@ -108,7 +110,9 @@ const PageCandidateTasks = () => {
                                                         заданию</IonButton>
                                                     <IonButton expand="block" fill="clear" color="transparent"
                                                                style={{fontSize: "13px"}}
-                                                               onClick={() => openExternalSite('https://www.example.com')}>Добавить в
+                                                               onClick={() => openExternalSite('https://calendar.google.com/calendar/u/0/r/eventedit?text=${stage.name}'+
+                                                                   `&dates=${moment(stage.deadline).subtract(1, 'hour').format('YYYYMMDDTHHmmssZ')}/${moment(stage.deadline).format('YYYYMMDDTHHmmssZ')}`+
+                                                                   '&details=ID этапа: ${stage.id} ')}>Добавить в
                                                         календарь</IonButton>
                                                 </IonCardContent>
                                             </IonCard>
