@@ -53,6 +53,10 @@ function PopupMenuCandidate() {
                             <IonItem routerLink="/">
                                 <IonIcon src="./images/terminal-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Поддержка</IonLabel>
+                            </IonItem>
+
+                            <IonItem>
+                                <IonIcon src="../images/terminal-outline.svg" slot="start"></IonIcon>
                                 <IonLabel onClick={() => nullifyAllCookies()}>Выйти</IonLabel>
                             </IonItem>
                         </IonMenuToggle>
