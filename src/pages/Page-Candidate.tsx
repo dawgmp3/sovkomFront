@@ -29,7 +29,7 @@ function PageCandidate() {
 
 
     const fetchDataVacancies = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/vacancy/allVacancies")
+        fetch("/api/vacancy/allVacancies")
             .then(response => {
                 return response.json()
             })
@@ -60,13 +60,16 @@ function PageCandidate() {
                 setPhoneNumber(dataCandidate.phoneNumber)
                 setEmail(dataCandidate.email)
                 setName(dataCandidate.name)
-                setImage(dataCandidate.image)
+                setImage(dataCandidate.image_url)
             })
     }
 
     useEffect(() => {
         fetchDataVacancies()
         fetchUserData()
+        fetchDataOtkliki()
+        
+
     }, [])
 
     return (
@@ -157,7 +160,7 @@ function PageCandidate() {
                         <IonRow style={{margin: "0px"}}>
                             {vacancy.map(vac => (
                                     <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="5" sizeXl="3"
-                                            className="vacancy-cards-list" key={vac.id}>
+                                            className="vacancy-cards-list" key={vac.vacancyId}>
                                         <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                             <IonCardHeader>
                                                 <IonCardTitle style={{fontWeight: 600}}>{vac.vacancyName}</IonCardTitle>
