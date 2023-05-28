@@ -39,6 +39,8 @@ interface Props {
 }
 
 const PageCandidateTasks = () => {
+
+
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
         fetch("/api/userInfo/getUserInformation")
@@ -108,7 +110,9 @@ const PageCandidateTasks = () => {
                                                         заданию</IonButton>
                                                     <IonButton expand="block" fill="clear" color="transparent"
                                                                style={{fontSize: "13px"}}
-                                                               onClick={() => openExternalSite('https://www.example.com')}>Добавить в
+                                                               onClick={() => openExternalSite('https://calendar.google.com/calendar/u/0/r/eventedit?text=${stage.name}'+
+                                                                   `&dates=${moment(stage.deadline).subtract(1, 'hour').format('YYYYMMDDTHHmmssZ')}/${moment(stage.deadline).format('YYYYMMDDTHHmmssZ')}`+
+                                                                   '&details=ID этапа: ${stage.id} ')}>Добавить в
                                                         календарь</IonButton>
                                                 </IonCardContent>
                                             </IonCard>
