@@ -33,8 +33,20 @@ interface Vacancy {
     vacancyId: string;
 }
 
+interface RouteParams {
+    id: string
+}
+
 const ListCandidates = () => {
+    const { id } = useParams<RouteParams>();
+
     const [candidate, setCandidate] = useState<any[]>([])
+
+    const history = useHistory();
+
+    const navigateToPage = (id: string) => {
+        history.push(`/candidate-card/${id}`);
+    };
 
     const fetchData = () => {
         fetch("/api/vacancy/getCandidatesByVacancy?vacancyId=" + id)
@@ -183,7 +195,8 @@ const ListCandidates = () => {
                                                 <IonLabel color="medium" slot="end"><i>to-be-done</i></IonLabel>
                                             </IonItem>
 
-                                            <IonButton expand="block" fill="clear" color="transparent">Подробнее о
+                                            <IonButton onClick={() => navigateToPage(can.id)}
+                                                       expand="block" fill="clear" color="transparent">Подробнее о
                                                 кандидате</IonButton>
 
                                         </IonCardContent>

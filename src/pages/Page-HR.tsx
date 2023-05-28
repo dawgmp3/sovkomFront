@@ -12,8 +12,16 @@ import {
     IonToolbar
 } from '@ionic/react';
 import PopupMenu from "./Popup-Menu-Candidate";
+import {useHistory} from "react-router";
 
 const PageHR = () => {
+
+    const history = useHistory();
+
+    const navigateToPage = (id: string) => {
+        history.push(`/list-candidates/${id}`);
+    };
+
     const [vacancy, setVacancy] = useState<any[]>([])
     const [image, setImage] = useState('')
     const [name, setName] = useState('')

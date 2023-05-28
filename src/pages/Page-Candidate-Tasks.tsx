@@ -15,6 +15,7 @@ import {
 import PopupMenuCandidate from "./Popup-Menu-Candidate";
 import moment from 'moment';
 import {AddToCalendarButton} from 'add-to-calendar-button-react';
+import {openExternalSite, redirectToExternalSite} from "../scripts/utils";
 
 interface Stage {
     name: string;
