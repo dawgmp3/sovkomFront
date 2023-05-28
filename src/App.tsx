@@ -33,6 +33,10 @@ import Login from "./pages/Login";
 
 setupIonicReact();
 const App: React.FC = () => (
+
+
+
+
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
@@ -52,7 +56,7 @@ const App: React.FC = () => (
                     <ListCandidates/>
                 </Route>
                 <Route exact path="/home">
-                    <MainPageByRole role="ROLE_USER"/>
+                    <MainPageByRole/>
                 </Route>
                 <Route exact path="/hr-page">
                     <PageHR/>
