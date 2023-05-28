@@ -133,7 +133,7 @@ const PageHR = () => {
                                     className="vacancy-cards-list">
                                 <div className="search-button">
                                     <IonSearchbar searchIcon="../images/search-outline.svg"
-                                                  placeholder="Search preorders and products"></IonSearchbar>
+                                                  placeholder="Поиск по названию"></IonSearchbar>
                                 </div>
                             </IonCol>
                         </IonRow>
