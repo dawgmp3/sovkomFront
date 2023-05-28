@@ -14,10 +14,6 @@ import React, {useState} from "react";
 import {Redirect, Route} from "react-router-dom";
 import PopupMenuCandidate from "./Popup-Menu-Candidate";
 import "../styles/Test-Form.css"
-import MainPageLoader from "../scripts/MainPageLoader";
-import {navigate, push} from "ionicons/icons";
-import ListCandidates from "./List-Of-Candidates";
-
 function Registration() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -62,16 +58,31 @@ function Registration() {
     };
 
 
-    function jsonReg() {
+     async function jsonReg() {
         if (validateEmail(email) && password != "" && name != "" && phone != "") {
             let jsonRegisterData = {
                 email: email,
                 password: password,
                 name: name,
-                phone: phone,
+                phoneNumber: phone,
             }
             console.log(JSON.stringify(jsonRegisterData));
-            window.location.assign('/list-candidates');
+            await fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/user/registrationUser", {
+                // mode: 'no-cors',
+                method: 'POST',
+                headers: {
+                    'Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(jsonRegisterData)})
+                .then(function(response){
+                    return response.text();
+                })
+                .then(function(text){
+                    console.log(text);
+                })
+            // window.location.assign('/list-candidates');
         }
     }
 
@@ -104,9 +115,9 @@ function Registration() {
                                               labelPlacement="floating"
                                               helperText="Введите корректный e-mail"
                                               errorText="Неверный формат e-mail"
+                                              onInput={(e: any) => handleChangeEmail(e)}
                                               onIonInput={(event) => validate(event)}
                                               onIonBlur={() => markTouched()}
-                                              onInput={(e: any) => handleChangeEmail(e)}
                                     ></IonInput>
                                 </IonItem>
                             </IonCard>
@@ -119,7 +130,6 @@ function Registration() {
                                               labelPlacement="floating"
                                               helperText="Введите пароль"
                                               errorText="Password"
-                                              onIonInput={(event) => validate(event)}
                                               onIonBlur={() => markTouched()}
                                               counter={true}
                                               maxlength={20}
@@ -150,7 +160,6 @@ function Registration() {
                                               label="Phone"
                                               labelPlacement="floating"
                                               helperText="Введите номер телефона"
-                                              onIonInput={(event) => validate(event)}
                                               onIonBlur={() => markTouched()}
                                               counter={true}
 

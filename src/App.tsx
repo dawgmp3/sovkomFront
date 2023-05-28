@@ -42,9 +42,9 @@ const App: React.FC = () => (
                 <Route exact path="/register">
                     <Registration/>
                 </Route>
-                <Route exact path="/login">
-                    <Login/>
-                </Route>
+                {/*<Route exact path="/login">*/}
+                {/*    <Login></Login>*/}
+                {/*</Route>*/}
                 <Route exact path="/candidate-card">
                     <CandidateCardForHR/>
                 </Route>
