@@ -55,6 +55,10 @@ function PopupMenu() {
                                 <IonIcon src="../images/terminal-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Поддержка</IonLabel>
                             </IonItem>
+                            <IonItem routerLink="/">
+                                <IonIcon src="../images/terminal-outline.svg" slot="start"></IonIcon>
+                                <IonLabel onClick={() => nullifyAllCookies()}>Выйти</IonLabel>
+                            </IonItem>
                         </IonMenuToggle>
                     </IonList>
                 </IonContent>

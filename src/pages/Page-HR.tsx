@@ -63,13 +63,13 @@ const PageHR = () => {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
-                        <IonButtons slot="end">
-                            <IonMenuToggle>
-                                <IonItem lines="none" routerLink="/logout">
-                                    <IonTitle>Выйти</IonTitle>
-                                </IonItem>
-                            </IonMenuToggle>
-                        </IonButtons>
+                        {/*<IonButtons slot="end">*/}
+                        {/*    <IonMenuToggle>*/}
+                        {/*        <IonItem lines="none" routerLink="/logout">*/}
+                        {/*            <IonTitle>Выйти</IonTitle>*/}
+                        {/*        </IonItem>*/}
+                        {/*    </IonMenuToggle>*/}
+                        {/*</IonButtons>*/}
                         <IonTitle>Главная страница</IonTitle>
                     </IonToolbar>
                 </IonHeader>
