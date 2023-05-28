@@ -14,6 +14,7 @@ import {
     IonToolbar
 } from '@ionic/react';
 import PopupMenu from "./Popup-Menu";
+import {useParams} from "react-router";
 
 interface Stage {
     name: string;
@@ -32,7 +33,13 @@ interface Vacancy {
     vacancyId: string;
 }
 
+
+interface RouteParams {
+    id: string;
+}
+
 const CandidateCardForHR = () => {
+    const { id } = useParams<RouteParams>();
     const [candidate, setCandidate] = useState<any[]>([])
     const [otkilk, setOtklik] = useState<any[]>([])
 
@@ -42,7 +49,7 @@ const CandidateCardForHR = () => {
     const [image, setImage] = useState('');
 
     const fetchDataOtkliki = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUsersResponses?userId=dcd6baa9-cbc2-428b-afe4-556a4f7538d0")
+        fetch("/api/userInfo/getUsersResponses?userId=" + id)
             .then(response => {
                 return response.json()
             })
@@ -52,7 +59,7 @@ const CandidateCardForHR = () => {
     }
 
     const fetchData = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUsersInfo?userId=dcd6baa9-cbc2-428b-afe4-556a4f7538d0")
+        fetch("/api/userInfo/getUsersInfo?userId=" + id)
             .then(response => {
                 return response.json()
             })
@@ -80,7 +87,7 @@ const CandidateCardForHR = () => {
                         <IonButtons slot="start">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
-                        <IonTitle>Личные данные</IonTitle>
+                        <IonTitle>Личные данные кандидата</IonTitle>
                     </IonToolbar>
                 </IonHeader>
 
@@ -124,49 +131,40 @@ const CandidateCardForHR = () => {
                         <IonText style={{fontSize: "30px"}}>Активные отклики</IonText>
                     </IonCol>
                     <IonGrid>
-                        <IonRow>
+
 
                             {otkilk.map(otk => (
+                                <IonRow>
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4" key={otk.id}>
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                         <IonCardHeader>
                                             <IonCardTitle>{otk.vacancyName}</IonCardTitle>
                                         </IonCardHeader>
                                         <IonCardContent>
-                                            {(otk.stages).map((stage: Stage) => (
-                                                <IonItem>
-                                                    <IonLabel>Статус отклика</IonLabel>
-                                                    <IonBadge color="warning">{stage.name}</IonBadge>
-                                                </IonItem>
-                                                )
-                                            )}
-                                            {/*<IonItem>*/}
-                                            {/*    <IonLabel>Статус отклика</IonLabel>*/}
-                                            {/*    <IonBadge color="warning">{otk.state}</IonBadge>*/}
-                                            {/*</IonItem>*/}
+                                            {/*{(otk.stages).map((stage: Stage) => (*/}
+                                            {/*    <IonItem>*/}
+                                            {/*        <IonLabel>Последний пройденный этап</IonLabel>*/}
+                                            {/*        <IonBadge color="warning">{stage.name}</IonBadge>*/}
+                                            {/*    </IonItem>*/}
+                                            {/*    )*/}
+                                            {/*)}*/}
                                             <IonItem>
                                                 <IonLabel>Последний пройденный этап</IonLabel>
-                                                <IonLabel color="medium" slot="end">to-be-realised</IonLabel>
+                                                <IonBadge color="warning">Тест на знание Java</IonBadge>
                                             </IonItem>
-
-                                            {/*<IonItem routerLink="/">*/}
-                                            {/*    <IonLabel>Анкета</IonLabel>*/}
-                                            {/*    <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>*/}
+                                            {/*<IonItem>*/}
+                                            {/*    <IonLabel>Статус отклика</IonLabel>*/}
+                                            {/*    <IonBadge color="warning">to-be-realised</IonBadge>*/}
                                             {/*</IonItem>*/}
 
                                             <IonItem routerLink="/">
                                                 <IonLabel>Тест</IonLabel>
                                                 <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
                                             </IonItem>
-                                            <IonItem routerLink="/home">
+                                            <IonItem routerLink="/">
                                                 <IonLabel>Результаты этапов</IonLabel>
                                                 <IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>
                                             </IonItem>
-
-
-
-                                                {/*<IonLabel>Результаты этапов</IonLabel>*/}
-                                                {/*<IonIcon icon="../images/chevron-forward-outline.svg" slot="end"></IonIcon>*/}
 
 
                                             <IonButton expand="block" fill="clear" color="transparent">
@@ -194,9 +192,8 @@ const CandidateCardForHR = () => {
                                         </IonCardContent>
                                     </IonCard>
                                 </IonCol>
+                                </IonRow>
                                 ))}
-
-                        </IonRow>
                     </IonGrid>
                 </IonContent>
             </IonPage>

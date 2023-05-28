@@ -14,6 +14,7 @@ import {
 } from "@ionic/react";
 import React, {useEffect, useState} from 'react';
 import PopupMenu from "./Popup-Menu";
+import {useHistory, useParams} from "react-router";
 
 interface Stage {
     name: string;
@@ -32,11 +33,23 @@ interface Vacancy {
     vacancyId: string;
 }
 
+interface RouteParams {
+    id: string
+}
+
 const ListCandidates = () => {
+    const { id } = useParams<RouteParams>();
+
     const [candidate, setCandidate] = useState<any[]>([])
 
+    const history = useHistory();
+
+    const navigateToPage = (id: string) => {
+        history.push(`/candidate-card/${id}`);
+    };
+
     const fetchData = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/vacancy/getCandidatesByVacancy?vacancyId=b396f1b4-b2ed-46a6-a355-91776b207272")
+        fetch("/api/vacancy/getCandidatesByVacancy?vacancyId=" + id)
             .then(response => {
                 return response.json()
             })
@@ -132,7 +145,7 @@ const ListCandidates = () => {
                                         className="vacancy-cards-list">
                                     <div className="search-button">
                                         <IonSearchbar searchIcon="../images/search-outline.svg"
-                                                      placeholder="Search preorders and products"></IonSearchbar>
+                                                      placeholder="Введите имя"></IonSearchbar>
                                     </div>
                                 </IonCol>
                             </IonRow>
@@ -160,40 +173,6 @@ const ListCandidates = () => {
                     <IonGrid style={{margin: "0px"}}>
                         <IonRow style={{margin: "0px"}}>
 
-                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
-                            {/*    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>*/}
-                            {/*        <IonCardContent>*/}
-                            {/*            <IonItem>*/}
-                            {/*                <IonThumbnail slot="start">*/}
-                            {/*                    <img alt="Silhouette of mountains"*/}
-                            {/*                         src="https://ionicframework.com/docs/img/demos/thumbnail.svg"*/}
-                            {/*                         style={{borderRadius: '16px'}}/>*/}
-                            {/*                </IonThumbnail>*/}
-                            {/*                <IonLabel>Орлова Софья</IonLabel>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonItem>*/}
-                            {/*                <IonLabel>Статус заявки</IonLabel>*/}
-                            {/*                <IonBadge color="warning">В процессе отбора</IonBadge>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonItem>*/}
-                            {/*                <IonLabel>Пройденный этап</IonLabel>*/}
-                            {/*                <IonLabel color="medium" slot="end"><i>Тест на знание Java</i></IonLabel>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonItem>*/}
-                            {/*                <IonLabel>PO arrival date</IonLabel>*/}
-                            {/*                <IonLabel color="medium" slot="end"><i>12/27/2023</i></IonLabel>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonButton expand="block" fill="clear" color="transparent">Подробнее о*/}
-                            {/*                кандидате</IonButton>*/}
-
-                            {/*        </IonCardContent>*/}
-                            {/*    </IonCard>*/}
-                            {/*</IonCol>*/}
-
                             {candidate.map(can => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4" key={can.id}>
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
@@ -216,19 +195,14 @@ const ListCandidates = () => {
                                                 <IonLabel color="medium" slot="end"><i>to-be-done</i></IonLabel>
                                             </IonItem>
 
-                                            <IonItem>
-                                                <IonLabel>PO arrival date</IonLabel>
-                                                <IonLabel color="medium" slot="end"><i>{moment(can.deadline).format('DD.MM.YY HH:mm')}</i></IonLabel>
-                                            </IonItem>
-
-                                            <IonButton expand="block" fill="clear" color="transparent">Подробнее о
+                                            <IonButton onClick={() => navigateToPage(can.id)}
+                                                       expand="block" fill="clear" color="transparent">Подробнее о
                                                 кандидате</IonButton>
 
                                         </IonCardContent>
                                     </IonCard>
-                                </IonCol>)
-                            )}
-
+                                </IonCol>
+                                ))}
                         </IonRow>
                     </IonGrid>
 
