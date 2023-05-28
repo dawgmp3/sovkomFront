@@ -68,7 +68,7 @@ function PageCandidate() {
         fetchDataVacancies()
         fetchUserData()
         fetchDataOtkliki()
-        
+
 
     }, [])
 
@@ -129,7 +129,7 @@ function PageCandidate() {
                                     className="vacancy-cards-list">
                                 <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
                                     <IonCardHeader>
-                                        <IonCardTitle style={{fontWeight: 600}}>{otkl.vacancy.name}</IonCardTitle>
+                                        <IonCardTitle style={{fontWeight: 600}}>{otkl.vacancyName}</IonCardTitle>
                                     </IonCardHeader>
                                     <IonList no-lines>
                                         <IonItem lines="none">
