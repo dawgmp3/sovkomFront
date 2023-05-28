@@ -13,7 +13,29 @@ import {
     IonToolbar
 } from '@ionic/react';
 import PopupMenuCandidate from "./Popup-Menu-Candidate";
+import moment from 'moment';
 import {AddToCalendarButton} from 'add-to-calendar-button-react';
+
+interface Stage {
+    name: string;
+    id: string;
+    deadline: Date;
+    result: string;
+    additional: null;
+    state: string;
+}
+
+interface Vacancy {
+    responseStatus: string;
+    creationDate: string;
+    vacancyName: string;
+    stages: Stage[];
+    vacancyId: string;
+}
+
+interface Props {
+    data: Vacancy[];
+}
 
 const PageCandidateTasks = () => {
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
