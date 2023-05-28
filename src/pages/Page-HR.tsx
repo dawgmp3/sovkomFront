@@ -154,7 +154,7 @@ const PageHR = () => {
                                                 <IonBadge slot="end" color={"warning"}>{vac.workExperience}</IonBadge>
                                             </IonItem>
                                             <IonButton
-                                                onClick={() => navigateToPage(vac.id)}
+                                                onClick={() => navigateToPage(vac.vacancyId)}
                                                  expand="block" fill="clear" color="transparent">Просмотреть
                                                 кандидатов</IonButton>
                                         </IonCardContent>
