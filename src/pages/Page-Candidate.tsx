@@ -143,7 +143,6 @@ function PageCandidate() {
                                             <IonBadge slot="start"  color="primary">{otkl.responseStatus}</IonBadge>
                                         </IonItem>
                                     </IonList>
-                                    <IonItem></IonItem>
                                 </IonCard>
                             </IonCol>
                             ))}
