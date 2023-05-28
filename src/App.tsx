@@ -50,12 +50,6 @@ const App: React.FC = () => (
                 {/*<Route exact path="/login">*/}
                 {/*    <Login></Login>*/}
                 {/*</Route>*/}
-                <Route exact path="/candidate-card">
-                    <CandidateCardForHR/>
-                </Route>
-                <Route exact path="/list-candidates">
-                    <ListCandidates/>
-                </Route>
                 <Route exact path="/home">
                     <MainPageByRole/>
                 </Route>
