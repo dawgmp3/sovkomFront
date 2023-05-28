@@ -43,18 +43,20 @@ const PageCandidateTasks = () => {
 
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
-        fetch("/api/userInfo/getUserResponses")
+        fetch('/api/userInfo/getUsersResponses')
             .then(response => {
                 return response.json()
             })
             .then(data => {
                 setUsersChallenge(data)
+                console.log(data)
             })
     }
     useEffect(() => {
         fetchDataVacancyCards()
     }, [])
-    console.log(typeof (usersChallenge))
+
+
     return (
         <>
             <PopupMenuCandidate/>
