@@ -12,6 +12,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
+import {openExternalSite} from "../scripts/utils";
 
 function PopupMenu() {
     return (
@@ -33,7 +34,7 @@ function PopupMenu() {
                                 <IonIcon src="../images/ice-cream-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Все вакансии</IonLabel>
                             </IonItem>
-                            <IonItem routerLink="/">
+                            <IonItem onClick={() => openExternalSite('/statistic')}>
                                 <IonIcon src="../images/calendar-number-outline.svg" slot="start"></IonIcon>
                                 <IonLabel>Статистика</IonLabel>
                             </IonItem>

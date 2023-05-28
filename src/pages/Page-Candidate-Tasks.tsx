@@ -41,7 +41,7 @@ interface Props {
 const PageCandidateTasks = () => {
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUsersResponses?userId=dcd6baa9-cbc2-428b-afe4-556a4f7538d0")
+        fetch("/api/userInfo/getUserInformation")
             .then(response => {
                 return response.json()
             })

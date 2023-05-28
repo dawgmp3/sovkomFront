@@ -27,7 +27,7 @@ const PageHR = () => {
     const [name, setName] = useState('')
 
     const fetchData = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/vacancy/allVacancies")
+        fetch("/api/vacancy/allVacancies")
             .then(response => {
                 return response.json()
             })
@@ -37,7 +37,7 @@ const PageHR = () => {
     }
 
     const fetchUserData = () => {
-        fetch("http://sovkombank-cheescake-hackathon.duckdns.org/api/userInfo/getUserInformation")
+        fetch("/api/userInfo/getUserInformation")
             .then(response => {
                 return response.json()
             })
@@ -122,8 +122,7 @@ const PageHR = () => {
                                     className="vacancy-cards-list">
                                 <div className="hr-card-vacansii-plus_button" style={{marginBottom: "20px"}}>
                                     <IonFab>
-                                        <IonFabButton routerLink="/vacancy-page-for-hr" className="pic-size"
-                                                      style={{height: "34px", width: "34px"}}>
+                                        <IonFabButton routerLink="/vacancy-page-for-hr" className="pic-size" style={{height: "34px", width: "34px"}}>
                                             <IonIcon icon="../images/add-outline.svg"></IonIcon>
                                         </IonFabButton>
                                     </IonFab>
@@ -154,7 +153,7 @@ const PageHR = () => {
                                             </IonItem>
                                             <IonButton
                                                 onClick={() => navigateToPage(vac.id)}
-                                                expand="block" fill="clear" color="transparent">Просмотреть
+                                                 expand="block" fill="clear" color="transparent">Просмотреть
                                                 кандидатов</IonButton>
                                         </IonCardContent>
                                     </IonCard>
