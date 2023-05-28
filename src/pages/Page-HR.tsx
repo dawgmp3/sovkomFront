@@ -81,7 +81,7 @@ const PageHR = () => {
                                                      src={image}
                                                      style={{borderRadius: '16px'}}/>
                                             </IonThumbnail>
-                                            <IonLabel>Орлова Софья</IonLabel>
+                                            <IonLabel>{name}</IonLabel>
                                         </IonItem>
 
                                         <IonItem routerLink="/">

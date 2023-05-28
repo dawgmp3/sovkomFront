@@ -133,7 +133,7 @@ const ListCandidates = () => {
                                         className="vacancy-cards-list">
                                     <div className="search-button">
                                         <IonSearchbar searchIcon="../images/search-outline.svg"
-                                                      placeholder="Search preorders and products"></IonSearchbar>
+                                                      placeholder="Введите имя"></IonSearchbar>
                                     </div>
                                 </IonCol>
                             </IonRow>
@@ -161,40 +161,6 @@ const ListCandidates = () => {
                     <IonGrid style={{margin: "0px"}}>
                         <IonRow style={{margin: "0px"}}>
 
-                            {/*<IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4">*/}
-                            {/*    <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>*/}
-                            {/*        <IonCardContent>*/}
-                            {/*            <IonItem>*/}
-                            {/*                <IonThumbnail slot="start">*/}
-                            {/*                    <img alt="Silhouette of mountains"*/}
-                            {/*                         src="https://ionicframework.com/docs/img/demos/thumbnail.svg"*/}
-                            {/*                         style={{borderRadius: '16px'}}/>*/}
-                            {/*                </IonThumbnail>*/}
-                            {/*                <IonLabel>Орлова Софья</IonLabel>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonItem>*/}
-                            {/*                <IonLabel>Статус заявки</IonLabel>*/}
-                            {/*                <IonBadge color="warning">В процессе отбора</IonBadge>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonItem>*/}
-                            {/*                <IonLabel>Пройденный этап</IonLabel>*/}
-                            {/*                <IonLabel color="medium" slot="end"><i>Тест на знание Java</i></IonLabel>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonItem>*/}
-                            {/*                <IonLabel>PO arrival date</IonLabel>*/}
-                            {/*                <IonLabel color="medium" slot="end"><i>12/27/2023</i></IonLabel>*/}
-                            {/*            </IonItem>*/}
-
-                            {/*            <IonButton expand="block" fill="clear" color="transparent">Подробнее о*/}
-                            {/*                кандидате</IonButton>*/}
-
-                            {/*        </IonCardContent>*/}
-                            {/*    </IonCard>*/}
-                            {/*</IonCol>*/}
-
                             {candidate.map(can => (
                                 <IonCol size="12" sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="4" key={can.id}>
                                     <IonCard className="vacancy-cards" style={{borderRadius: '20px'}}>
@@ -217,19 +183,13 @@ const ListCandidates = () => {
                                                 <IonLabel color="medium" slot="end"><i>to-be-done</i></IonLabel>
                                             </IonItem>
 
-                                            <IonItem>
-                                                <IonLabel>PO arrival date</IonLabel>
-                                                <IonLabel color="medium" slot="end"><i>{moment(can.deadline).format('DD.MM.YY HH:mm')}</i></IonLabel>
-                                            </IonItem>
-
                                             <IonButton expand="block" fill="clear" color="transparent">Подробнее о
                                                 кандидате</IonButton>
 
                                         </IonCardContent>
                                     </IonCard>
-                                </IonCol>)
-                            )}
-
+                                </IonCol>
+                                ))}
                         </IonRow>
                     </IonGrid>
 
