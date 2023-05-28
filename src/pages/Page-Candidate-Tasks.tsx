@@ -43,7 +43,7 @@ const PageCandidateTasks = () => {
 
     const [usersChallenge, setUsersChallenge] = useState<any[]>([])
     const fetchDataVacancyCards = () => {
-        fetch("/api/userInfo/getUserInformation")
+        fetch("/api/userInfo/getUserResponses")
             .then(response => {
                 return response.json()
             })
